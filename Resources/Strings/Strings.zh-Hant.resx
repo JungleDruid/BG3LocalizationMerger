@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Merge" xml:space="preserve">
+    <value>合併</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>柏德之門3語言合併器</value>
+  </data>
+  <data name="UnpackedData" xml:space="preserve">
+    <value>已解壓縮檔案資料夾</value>
+  </data>
+  <data name="LanguagePack" xml:space="preserve">
+    <value>語言包</value>
+  </data>
+  <data name="ReferencePack" xml:space="preserve">
+    <value>次要語言包</value>
+  </data>
+  <data name="Dialogues" xml:space="preserve">
+    <value>對話</value>
+  </data>
+  <data name="Books" xml:space="preserve">
+    <value>書</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Hints" xml:space="preserve">
+    <value>小提示</value>
+  </data>
+  <data name="ItemDescriptions" xml:space="preserve">
+    <value>物品說明</value>
+  </data>
+  <data name="ItemNames" xml:space="preserve">
+    <value>物品名稱</value>
+  </data>
+  <data name="Miscs" xml:space="preserve">
+    <value>雜項</value>
+  </data>
+  <data name="QuestDescriptions" xml:space="preserve">
+    <value>任務說明</value>
+  </data>
+  <data name="QuestMarkers" xml:space="preserve">
+    <value>任務標記</value>
+  </data>
+  <data name="QuestNames" xml:space="preserve">
+    <value>任務名稱</value>
+  </data>
+  <data name="StatusDescriptions" xml:space="preserve">
+    <value>狀態說明</value>
+  </data>
+  <data name="StatusNames" xml:space="preserve">
+    <value>狀態名稱</value>
+  </data>
+  <data name="Tooltips" xml:space="preserve">
+    <value>其他提示</value>
+  </data>
+  <data name="MergeUnconditionally" xml:space="preserve">
+    <value>無條件合併</value>
+  </data>
+  <data name="SwapReference" xml:space="preserve">
+    <value>主次要對調</value>
+  </data>
+  <data name="BrowseButton" xml:space="preserve">
+    <value>瀏覽...</value>
+  </data>
+  <data name="ExportPath" xml:space="preserve">
+    <value>輸出檔案位置</value>
+  </data>
+  <data name="MergeUnconditionallyWarning" xml:space="preserve">
+    <value>合併“所有”文句，包含不在清單上的選項。
+這會導致一些文字超出遊戲界面。
+
+確定繼續嗎？</value>
+  </data>
+  <data name="MergeUnconditionallyTitle" xml:space="preserve">
+    <value>注意</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>錯誤</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="PackageErrorMessage" xml:space="preserve">
+    <value>無法生成語言包。
+請確認遊戲不正在執行。
+
+重試？</value>
+  </data>
+  <data name="OKButton" xml:space="preserve">
+    <value>確定</value>
+  </data>
+  <data name="YesButton" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="NoButton" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="InvalidMessage" xml:space="preserve">
+    <value>{0}錯誤。</value>
+  </data>
+  <data name="NotExistMessage" xml:space="preserve">
+    <value>{0}不存在。</value>
+  </data>
+  <data name="LoadingMessage" xml:space="preserve">
+    <value>正在讀取{0}...</value>
+  </data>
+  <data name="LoadedMessage" xml:space="preserve">
+    <value>已讀取{0}個{1}。耗時：{2:0.##}秒</value>
+  </data>
+  <data name="Waypoints" xml:space="preserve">
+    <value>傳送點</value>
+  </data>
+  <data name="Quests" xml:space="preserve">
+    <value>任務</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>物品</value>
+  </data>
+  <data name="Dialogs" xml:space="preserve">
+    <value>對話</value>
+  </data>
+  <data name="ConvertingMessage" xml:space="preserve">
+    <value>正在將{0}轉換為{1}...</value>
+  </data>
+  <data name="ExtractingMessage" xml:space="preserve">
+    <value>正在解壓縮{0}...</value>
+  </data>
+  <data name="SavingMessage" xml:space="preserve">
+    <value>正在儲存{0}...</value>
+  </data>
+  <data name="PackagingMessage" xml:space="preserve">
+    <value>正在壓縮...</value>
+  </data>
+  <data name="ExportCompleteMessage" xml:space="preserve">
+    <value>輸出完成！</value>
+  </data>
+  <data name="SortingDataMessage" xml:space="preserve">
+    <value>正在排序資料...</value>
+  </data>
+  <data name="TotalStringMessage" xml:space="preserve">
+    <value>所有字串數量：{0}\t對照成功數量：{1}</value>
+  </data>
+  <data name="MergingMessage" xml:space="preserve">
+    <value>正在結合{0}...</value>
+  </data>
+  <data name="MergingUnconditionallyMessage" xml:space="preserve">
+    <value>正在結合所有字串...</value>
+  </data>
+  <data name="CanceledMessage" xml:space="preserve">
+    <value>已取消。</value>
+  </data>
+  <data name="TotalElapsedMessage" xml:space="preserve">
+    <value>總共耗時：{0:0.##}秒</value>
+  </data>
+</root>

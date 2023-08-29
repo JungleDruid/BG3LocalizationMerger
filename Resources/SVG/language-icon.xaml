@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <DrawingGroup x:Key="language_icon_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,48.0,48.0"/>
+        </DrawingGroup.ClipGeometry>
+        <GeometryDrawing Brush="#ffcfd8dc">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 15 13 h 25 c 1.104 0 2 0.896 2 2 v 25 c 0 1.104 -0.896 2 -2 2 H 26 L 15 13 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#ff546e7a">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 26.832 34.854 l -0.916 -1.776 l 0.889 -0.459 c 0.061 -0.031 6.101 -3.208 9.043 -9.104 l 0.446 -0.895 l 1.79 0.893 l -0.447 0.895 c -3.241 6.496 -9.645 9.85 -9.916 9.989 L 26.832 34.854 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#ff546e7a">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 38.019 34 l -0.87 -0.49 c -0.207 -0.116 -5.092 -2.901 -8.496 -7.667 l 1.627 -1.162 c 3.139 4.394 7.805 7.061 7.851 7.087 L 39 32.26 L 38.019 34 z M 26 22 H 40 V 24 H 26 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#ff546e7a">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 32 20 H 34 V 24 H 32 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#ff2196f3">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 33 35 H 8 c -1.104 0 -2 -0.896 -2 -2 V 8 c 0 -1.104 0.896 -2 2 -2 h 14 L 33 35 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#ff3f51b5">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 26 42 L 23 35 L 33 35 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#ffffffff">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 19.172 24 h -4.36 l -1.008 3 H 11 l 4.764 -13 h 2.444 L 23 27 h -2.805 L 19.172 24 z M 15.444 22 h 3.101 l -1.559 -4.714 L 15.444 22 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource language_icon_xaml}" x:Key="di_language_icon_xaml"/>
+</ResourceDictionary>

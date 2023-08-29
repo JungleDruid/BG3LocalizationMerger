@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Title" xml:space="preserve">
+    <value>BG3 Localization Merger</value>
+  </data>
+  <data name="Merge" xml:space="preserve">
+    <value>Merge</value>
+  </data>
+  <data name="UnpackedData" xml:space="preserve">
+    <value>Unpacked Data Folder</value>
+  </data>
+  <data name="LanguagePack" xml:space="preserve">
+    <value>Language Pack</value>
+  </data>
+  <data name="ReferencePack" xml:space="preserve">
+    <value>Reference Language Pack</value>
+  </data>
+  <data name="Dialogues" xml:space="preserve">
+    <value>Dialogues</value>
+  </data>
+  <data name="Books" xml:space="preserve">
+    <value>Books</value>
+  </data>
+  <data name="ItemNames" xml:space="preserve">
+    <value>Item Names</value>
+  </data>
+  <data name="ItemDescriptions" xml:space="preserve">
+    <value>Item Descriptions</value>
+  </data>
+  <data name="StatusNames" xml:space="preserve">
+    <value>Status Names</value>
+  </data>
+  <data name="StatusDescriptions" xml:space="preserve">
+    <value>Status Descriptions</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="QuestNames" xml:space="preserve">
+    <value>Quest Names</value>
+  </data>
+  <data name="QuestDescriptions" xml:space="preserve">
+    <value>Quest Descriptions</value>
+  </data>
+  <data name="QuestMarkers" xml:space="preserve">
+    <value>Quest Markers</value>
+  </data>
+  <data name="Tooltips" xml:space="preserve">
+    <value>Tooltips</value>
+  </data>
+  <data name="Hints" xml:space="preserve">
+    <value>Hints</value>
+  </data>
+  <data name="Miscs" xml:space="preserve">
+    <value>Miscs</value>
+  </data>
+  <data name="MergeUnconditionally" xml:space="preserve">
+    <value>Merge EVERYTHING</value>
+  </data>
+  <data name="SwapReference" xml:space="preserve">
+    <value>Swap Reference</value>
+  </data>
+  <data name="BrowseButton" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="ExportPath" xml:space="preserve">
+    <value>Export File Path</value>
+  </data>
+  <data name="MergeUnconditionallyWarning" xml:space="preserve">
+    <value>This will merge EVERYTHING, including those not on the list.
+It will cause overflow on some UI texts.
+
+Do you wish to continue?</value>
+  </data>
+  <data name="MergeUnconditionallyTitle" xml:space="preserve">
+    <value>CAUTION</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>ERROR</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="PackageErrorMessage" xml:space="preserve">
+    <value>Unable to create package due to I/O error.
+Please make sure the game is not running.
+
+Retry?</value>
+  </data>
+  <data name="OKButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="YesButton" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="NoButton" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="InvalidMessage" xml:space="preserve">
+    <value>Invalid {0}.</value>
+  </data>
+  <data name="NotExistMessage" xml:space="preserve">
+    <value>{0} does not exist.</value>
+  </data>
+  <data name="LoadingMessage" xml:space="preserve">
+    <value>Loading {0}...</value>
+  </data>
+  <data name="LoadedMessage" xml:space="preserve">
+    <value>{0} {1} loaded. Time spent: {2:0.##}s</value>
+  </data>
+  <data name="Waypoints" xml:space="preserve">
+    <value>Waypoints</value>
+  </data>
+  <data name="Quests" xml:space="preserve">
+    <value>Quests</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="Dialogs" xml:space="preserve">
+    <value>Dialogs</value>
+  </data>
+  <data name="ConvertingMessage" xml:space="preserve">
+    <value>Converting {0} to {1}...</value>
+  </data>
+  <data name="ExtractingMessage" xml:space="preserve">
+    <value>Extracting {0}...</value>
+  </data>
+  <data name="SavingMessage" xml:space="preserve">
+    <value>Saving {0}...</value>
+  </data>
+  <data name="PackagingMessage" xml:space="preserve">
+    <value>Packaging...</value>
+  </data>
+  <data name="ExportCompleteMessage" xml:space="preserve">
+    <value>Export Complete!</value>
+  </data>
+  <data name="SortingDataMessage" xml:space="preserve">
+    <value>Sorting Data...</value>
+  </data>
+  <data name="TotalStringMessage" xml:space="preserve">
+    <value>Total strings: {0}\tMatched: {1}</value>
+  </data>
+  <data name="MergingMessage" xml:space="preserve">
+    <value>Merging {0}...</value>
+  </data>
+  <data name="MergingUnconditionallyMessage" xml:space="preserve">
+    <value>Merging all string...</value>
+  </data>
+  <data name="CanceledMessage" xml:space="preserve">
+    <value>Canceled.</value>
+  </data>
+  <data name="TotalElapsedMessage" xml:space="preserve">
+    <value>Total elapsed: {0:0.##}s</value>
+  </data>
+</root>
