@@ -36,18 +36,17 @@ namespace BG3LocalizationMerger
             ReferencePackTextBox.Text = props.ReferencePackPath;
             ExportPathTextBox.Text = props.ExportPath;
 
-            LanguageComboBox.ItemsSource = TranslationSource
-                .GetAllCultures()
-                .Where(x => x.IsNeutralCulture);
-            LanguageComboBox.SelectedIndex = 0;
+            LanguageComboBox.ItemsSource = TranslationSource.GetAllCultures();
             foreach (CultureInfo culture in LanguageComboBox.ItemsSource)
             {
-                if (culture.Equals(Thread.CurrentThread.CurrentCulture))
+                if (culture.Equals(CultureInfo.CurrentCulture))
                 {
                     LanguageComboBox.SelectedItem = culture;
                     break;
                 }
             }
+            if (LanguageComboBox.SelectedIndex < 0)
+                LanguageComboBox.SelectedIndex = 0;
         }
 
         public static void Log(string text)

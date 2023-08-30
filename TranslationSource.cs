@@ -30,7 +30,7 @@ namespace BG3LocalizationMerger
         {
             var rm = Strings.ResourceManager;
 
-            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
             foreach (CultureInfo culture in cultures)
             {
                 if (culture.Equals(CultureInfo.InvariantCulture))
