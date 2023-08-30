@@ -78,9 +78,14 @@ Proceed with these steps to fill in the required information:
 
 ### 4. Launch the Game and Review the Results
 
-That's it! Remember to update the merged pack whenever the game updates.
+That's it! If you encounter any issues or have any suggestions, please consider [checking for existing issues](/../../issues) or [opening a new issue](/../../issues/new).
 
-To do this, simply [unpack and decompress](#1-unpack-the-official-packages) the latest patch file (the most recent `Patch*.pak`) and [merge](#3-start-merging) again.
+## Updating
+
+To ensure the language pack stays up-to-date, follow these steps whenever a new patch is released:
+
+1. [Unpack and decompress](#1-unpack-the-official-packages) new latest patch file (Patch*.pak).
+2. Overwrite the previous merged pack by [merging again](#3-start-merging)
 
 
 ## Screenshots
