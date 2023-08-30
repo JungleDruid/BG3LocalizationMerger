@@ -1,4 +1,5 @@
-﻿using BG3LocalizationMerger.Resources.Strings;
+﻿using BG3LocalizationMerger.Properties;
+using BG3LocalizationMerger.Resources.Strings;
 using ModernWpf.Controls.Primitives;
 using Ookii.Dialogs.Wpf;
 using System;
@@ -7,6 +8,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,10 +29,10 @@ namespace BG3LocalizationMerger
         public MainWindow()
         {
             s_instance = this;
-            Properties.Settings.Default.Upgrade();
-            var props = Properties.Settings.Default;
+            UpgradeSettings();
             InitializeComponent();
 
+            var props = Settings.Default;
             UnpackedDataTextBox.Text = props.UnpackedDataPath;
             LanguagePackTextBox.Text = props.LanguagePackPath;
             ReferencePackTextBox.Text = props.ReferencePackPath;
@@ -39,11 +41,25 @@ namespace BG3LocalizationMerger
             InitCulture();
         }
 
+        private static void UpgradeSettings()
+        {
+            var version = Assembly.GetEntryAssembly()?.GetName().Version;
+            if (version != null)
+            {
+                if (Settings.Default.SettingsVersion != version.ToString())
+                {
+                    Settings.Default.Upgrade();
+                    Settings.Default.SettingsVersion = version.ToString();
+                    Settings.Default.Save();
+                }
+            }
+        }
+
         private void InitCulture()
         {
             LanguageComboBox.ItemsSource = TranslationSource.GetAllCultures();
 
-            string defaultCultureName = Properties.Settings.Default.CultureName;
+            string defaultCultureName = Settings.Default.CultureName;
             var defaultCulture = string.IsNullOrEmpty(defaultCultureName)
                 ? CultureInfo.CurrentUICulture
                 : new CultureInfo(defaultCultureName);
@@ -205,7 +221,7 @@ namespace BG3LocalizationMerger
 
         private void SaveSettings()
         {
-            var props = Properties.Settings.Default;
+            var props = Settings.Default;
             props.UnpackedDataPath = UnpackedDataTextBox.Text;
             props.LanguagePackPath = LanguagePackTextBox.Text;
             props.ReferencePackPath = ReferencePackTextBox.Text;
@@ -334,8 +350,8 @@ namespace BG3LocalizationMerger
             if (LanguageComboBox.SelectedItem is CultureInfo culture)
             {
                 TranslationSource.Instance.Culture = culture;
-                Properties.Settings.Default.CultureName = culture.Name;
-                Properties.Settings.Default.Save();
+                Settings.Default.CultureName = culture.Name;
+                Settings.Default.Save();
             }
         }
     }
