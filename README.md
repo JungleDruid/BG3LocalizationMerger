@@ -2,6 +2,8 @@
 
 BG3 Localization Merger is a program designed to merge two languages together within Baldur's Gate 3, a video game.
 
+[中文說明](docs/README.zh-TW.md)
+
 ![BG3 Localization Merger interface](docs/imgs/merger_screenshot.webp)
 
 ## Features
