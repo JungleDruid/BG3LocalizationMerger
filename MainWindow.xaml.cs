@@ -36,11 +36,16 @@ namespace BG3LocalizationMerger
             ReferencePackTextBox.Text = props.ReferencePackPath;
             ExportPathTextBox.Text = props.ExportPath;
 
+            InitCulture();
+        }
+
+        private void InitCulture()
+        {
             LanguageComboBox.ItemsSource = TranslationSource.GetAllCultures();
 
             string defaultCultureName = Properties.Settings.Default.CultureName;
             var defaultCulture = string.IsNullOrEmpty(defaultCultureName)
-                ? CultureInfo.CurrentCulture
+                ? CultureInfo.CurrentUICulture
                 : new CultureInfo(defaultCultureName);
 
             foreach (CultureInfo culture in LanguageComboBox.ItemsSource)
@@ -48,11 +53,29 @@ namespace BG3LocalizationMerger
                 if (culture.Equals(defaultCulture))
                 {
                     LanguageComboBox.SelectedItem = culture;
-                    break;
+                    return;
                 }
             }
-            if (LanguageComboBox.SelectedIndex < 0)
-                LanguageComboBox.SelectedIndex = 0;
+
+            foreach (CultureInfo culture in LanguageComboBox.ItemsSource)
+            {
+                if (culture.Equals(defaultCulture.Parent))
+                {
+                    LanguageComboBox.SelectedItem = culture;
+                    return;
+                }
+            }
+
+            foreach (CultureInfo culture in LanguageComboBox.ItemsSource)
+            {
+                if (culture.TwoLetterISOLanguageName == defaultCulture.TwoLetterISOLanguageName)
+                {
+                    LanguageComboBox.SelectedItem = culture;
+                    return;
+                }
+            }
+
+            LanguageComboBox.SelectedIndex = 0;
         }
 
         public static void Log(string text)
