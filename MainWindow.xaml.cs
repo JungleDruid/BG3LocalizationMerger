@@ -37,9 +37,15 @@ namespace BG3LocalizationMerger
             ExportPathTextBox.Text = props.ExportPath;
 
             LanguageComboBox.ItemsSource = TranslationSource.GetAllCultures();
+
+            string defaultCultureName = Properties.Settings.Default.CultureName;
+            var defaultCulture = string.IsNullOrEmpty(defaultCultureName)
+                ? CultureInfo.CurrentCulture
+                : new CultureInfo(defaultCultureName);
+
             foreach (CultureInfo culture in LanguageComboBox.ItemsSource)
             {
-                if (culture.Equals(CultureInfo.CurrentCulture))
+                if (culture.Equals(defaultCulture))
                 {
                     LanguageComboBox.SelectedItem = culture;
                     break;
@@ -305,6 +311,8 @@ namespace BG3LocalizationMerger
             if (LanguageComboBox.SelectedItem is CultureInfo culture)
             {
                 TranslationSource.Instance.Culture = culture;
+                Properties.Settings.Default.CultureName = culture.Name;
+                Properties.Settings.Default.Save();
             }
         }
     }
