@@ -44,7 +44,7 @@ _如果您是無條件合併，可以跳過這一步。_
   - 下載並運行 [BG3 Modder's Multitool](https://github.com/ShinyHobo/BG3-Modders-Multitool/releases)。
   - 通過在右下角點擊 **星形圖示** 來完成基本配置。
   - 如果需要，首先下載 [LSLib](https://github.com/Norbyte/lslib/releases)。
-  - 僅需要 LSLib 的 `divine.exe` 和 `bg3.exe` 項目。
+  - 只需要輸入 LSLib 的 `divine.exe` 和遊戲的 `bg3.exe` 兩個欄位。
 - 通過選擇 **解包.pak檔案 (Unpack .pak files)** 來解包以下套件：
   - `Game.pak`
   - `Gustab.pak`
