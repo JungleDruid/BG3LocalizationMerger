@@ -80,7 +80,7 @@ Proceed with these steps to fill in the required information:
 
 That's it! Remember to update the merged pack whenever the game updates.
 
-To do this, simply [unpack](#1-unpack-the-official-packages) the latest patch file (the most recent `Patch*.pak`) and [merge](#2-fill-the-fields-in-bg3-localization-merger) again.
+To do this, simply [unpack and decompress](#1-unpack-the-official-packages) the latest patch file (the most recent `Patch*.pak`) and [merge](#3-start-merging) again.
 
 
 ## Screenshots
