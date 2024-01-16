@@ -108,11 +108,26 @@ namespace BG3LocalizationMerger
                 .Select(x => Path.Combine(x, "Globals"))
                 .Where(Directory.Exists)
                 .SelectMany(Directory.GetDirectories)
-                .Select(x => Path.Combine(x, "Characters", "_merged.lsx"))
+                .Select(x => Path.Combine(x, "Characters", "_merged.lsf.lsx"))
+                .Where(File.Exists);
+
+            var levelMergedFiles = Directory
+                .GetDirectories(props.UnpackedDataPath)
+                .Where(x => ModDirRegex().IsMatch(Path.GetFileName(x)))
+                .Select(x => Path.Combine(x, "Mods"))
+                .Where(Directory.Exists)
+                .SelectMany(Directory.GetDirectories)
+                .Where(x => s_modNames.Contains(Path.GetFileName(x)))
+                .Order(new ModPriorityComparer())
+                .Select(x => Path.Combine(x, "Levels"))
+                .Where(Directory.Exists)
+                .SelectMany(Directory.GetDirectories)
+                .Select(x => Path.Combine(x, "Characters", "_merged.lsf.lsx"))
                 .Where(File.Exists);
 
             CharacterHandles = files
                 .Concat(mergedFiles)
+                .Concat(levelMergedFiles)
                 .AsParallel()
                 .WithCancellation(cancellationToken)
                 .SelectMany(HandleExtractor.ExtractCharacterHandles)
@@ -419,11 +434,26 @@ namespace BG3LocalizationMerger
                 .Select(x => Path.Combine(x, "Globals"))
                 .Where(Directory.Exists)
                 .SelectMany(Directory.GetDirectories)
-                .Select(x => Path.Combine(x, "Items", "_merged.lsx"))
+                .Select(x => Path.Combine(x, "Items", "_merged.lsf.lsx"))
+                .Where(File.Exists);
+
+            var levelMergedFiles = Directory
+                .GetDirectories(props.UnpackedDataPath)
+                .Where(x => ModDirRegex().IsMatch(Path.GetFileName(x)))
+                .Select(x => Path.Combine(x, "Mods"))
+                .Where(Directory.Exists)
+                .SelectMany(Directory.GetDirectories)
+                .Where(x => s_modNames.Contains(Path.GetFileName(x)))
+                .Order(new ModPriorityComparer())
+                .Select(x => Path.Combine(x, "Levels"))
+                .Where(Directory.Exists)
+                .SelectMany(Directory.GetDirectories)
+                .Select(x => Path.Combine(x, "Items", "_merged.lsf.lsx"))
                 .Where(File.Exists);
 
             var groups = files
                 .Concat(mergedFiles)
+                .Concat(levelMergedFiles)
                 .AsParallel()
                 .WithCancellation(cancellationToken)
                 .Select(HandleExtractor.ExtractItemGroup);

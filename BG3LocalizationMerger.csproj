@@ -8,7 +8,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>x64</PlatformTarget>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>$(VersionPrefix)1.0.2</Version>
+    <Version>$(VersionPrefix)1.0.3</Version>
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
 
