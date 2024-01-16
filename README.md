@@ -51,7 +51,6 @@ To proceed, follow these instructions:
   - `Game.pak`
   - `Gustab.pak`
   - `Shared.pak`
-  - Additionally, unpack all available patch files (`Patch*.pak`).
 - After unpacking, click **Decompress Files** and wait for the process to complete.
 - Close the tool.
 - The unpacked data can be found in `[BG3 Modder's Multitool Folder]/UnpackedData`.
@@ -68,25 +67,24 @@ Proceed with these steps to fill in the required information:
 - **Reference Language Pack**: Select the second language pack.
   - Example: `[BG3 Game Folder]/Data/Localization/ChineseTraditional/ChineseTraditional.pak`.
 - **Export File Path**: Specify the location to save the merged language pack.
-  - It's recommended to place it in the `[BG3 Game Folder]/Data` directory to ensure it overrides the original language packs.
-  - Example: `[BG3 Game Folder]/Data/MergedLocalization.pak`.
+  - Use the same file name as the current language pack of the game and put it in a temporary folder.
+  - Example: `D:\Temp\ChineseTraditional.pak`
 - Toggle the categories you wish to merge.
 
 ### 3. Start Merging
 - Click **Merge** and wait for the process to complete.
   - If you're merging unconditionally, click **Merge Everything** instead.
 
-### 4. Launch the Game and Review the Results
+### 4. Replace the Language Pack File
+- Replace the current language pack file of the game with the exported file. E.g. `[BG3 Game Folder]/Data/Localization/ChineseTraditional/ChineseTraditional.pak`
+
+### 5. Launch the Game and Review the Results
 
 That's it! If you encounter any issues or have any suggestions, please consider [checking for existing issues](/../../issues) or [opening a new issue](/../../issues/new).
 
 ## Updating
 
-To ensure the language pack stays up-to-date, follow these steps whenever a new patch is released:
-
-1. [Unpack and decompress](#1-unpack-the-official-packages) new latest patch file (Patch*.pak).
-2. Overwrite the previous merged pack by [merging again](#3-start-merging)
-
+To ensure the language pack stays up-to-date, redo the [all the steps](#usage) whenever a new patch is released.
 
 ## Screenshots
 
