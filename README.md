@@ -49,8 +49,9 @@ To proceed, follow these instructions:
   - Only the LSLib `divine.exe` and `bg3.exe` fields are required.
 - Unpack the following packages by selecting **Unpack .pak Files**:
   - `Game.pak`
-  - `Gustab.pak`
+  - `Gustav.pak`
   - `Shared.pak`
+  - `Patch*.pak`
 - After unpacking, click **Decompress Files** and wait for the process to complete.
 - Close the tool.
 - The unpacked data can be found in `[BG3 Modder's Multitool Folder]/UnpackedData`.
@@ -84,7 +85,11 @@ That's it! If you encounter any issues or have any suggestions, please consider 
 
 ## Updating
 
-To ensure the language pack stays up-to-date, redo the [all the steps](#usage) whenever a new patch is released.
+To ensure the language pack stays up-to-date, you might need to merge again:
+
+- If it's a hotfix, you'll only need to unpack and decompress the newest hotfix file. E.g. `Patch5_Hotfix6.pak`
+
+- If it's a major patch, you'll need to remove the `Patch*_Hotfix*` folders in your `UnpackedData` folder first to avoid conflicts, then redo [all the steps](#usage).
 
 ## Screenshots
 
