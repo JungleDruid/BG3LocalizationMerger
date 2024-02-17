@@ -44,15 +44,13 @@ To proceed, follow these instructions:
 
 - Install BG3 Modder's Multitool:
   - Download and run [BG3 Modder's Multitool](https://github.com/ShinyHobo/BG3-Modders-Multitool/releases).
-  - Complete the basic configuration by clicking the **star icon** in the bottom right corner.
-  - If necessary, download [LSLib](https://github.com/Norbyte/lslib/releases) first.
-  - Only the LSLib `divine.exe` and `bg3.exe` fields are required.
-- Unpack the following packages by selecting **Unpack .pak Files**:
+  - Complete the basic configuration by clicking **Configuration** in the menu.
+- Unpack the following packages by selecting **Utilities/Game File Operations/Unpack Game Files**:
   - `Game.pak`
   - `Gustav.pak`
   - `Shared.pak`
-  - `Patch*.pak`
-- After unpacking, click **Decompress Files** and wait for the process to complete.
+  - `Patch*.pak` (Optional)
+- After unpacking, select **Utilities/Game File Operations/Decompress UnpackedData Files** and wait for the process to complete.
 - Close the tool.
 - The unpacked data can be found in `[BG3 Modder's Multitool Folder]/UnpackedData`.
 

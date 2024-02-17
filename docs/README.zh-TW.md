@@ -42,15 +42,14 @@ _如果您是無條件合併，可以跳過這一步。_
 
 - 安裝《BG3 Modder's Multitool》：
   - 下載並運行 [BG3 Modder's Multitool](https://github.com/ShinyHobo/BG3-Modders-Multitool/releases)。
-  - 通過在右下角點擊 **星形圖示** 來完成基本配置。
+  - 點擊選單的 **Configuration (配置)** 來完成基本配置。
   - 如果需要，首先下載 [LSLib](https://github.com/Norbyte/lslib/releases)。
-  - 只需要輸入 LSLib 的 `divine.exe` 和遊戲的 `bg3.exe` 兩個欄位。
-- 通過選擇 **解包.pak檔案 (Unpack .pak files)** 來解包以下套件：
+- 通過選擇 **Utilities/Game File Operations/Unpack Game Files (解包.pak文件)** 來解包以下套件：
   - `Game.pak`
   - `Gustav.pak`
   - `Shared.pak`
   - `Patch*.pak`
-- 解包後，點擊 **解壓文件 (Decompress Files)** 並等待處理完成。
+- 解包後，點擊 **Utilities/Game File Operations/Decompress UnpackedData Files (解壓文件)** 並等待處理完成。
 - 關閉這個工具。
 - 解包的數據可以在 `[BG3 Modder's Multitool 資料夾]/UnpackedData` 找到。
 
