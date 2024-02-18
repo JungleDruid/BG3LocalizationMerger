@@ -43,7 +43,6 @@ _如果您是無條件合併，可以跳過這一步。_
 - 安裝《BG3 Modder's Multitool》：
   - 下載並運行 [BG3 Modder's Multitool](https://github.com/ShinyHobo/BG3-Modders-Multitool/releases)。
   - 點擊選單的 **Configuration (配置)** 來完成基本配置。
-  - 如果需要，首先下載 [LSLib](https://github.com/Norbyte/lslib/releases)。
 - 通過選擇 **Utilities/Game File Operations/Unpack Game Files (解包.pak文件)** 來解包以下套件：
   - `Game.pak`
   - `Gustav.pak`

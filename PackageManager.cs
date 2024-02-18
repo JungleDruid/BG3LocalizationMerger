@@ -500,7 +500,6 @@ namespace BG3LocalizationMerger
                 .WithCancellation(cancellationToken)
                 .Select(lsx =>
                 {
-                    var speakers = new List<string?>(1);
                     XmlReader reader = XmlReader.Create(
                         lsx,
                         new XmlReaderSettings { IgnoreWhitespace = true }
@@ -525,11 +524,8 @@ namespace BG3LocalizationMerger
                         string? id = reader.GetAttribute("id");
                         switch (id)
                         {
-                            case "speakerlist":
-                                ParseSpeakers(reader.ReadSubtree(), speakers);
-                                break;
                             case "nodes":
-                                var dialogs = ParseDialogs(reader.ReadSubtree(), speakers);
+                                var dialogs = ParseDialogs(reader.ReadSubtree());
                                 return dialogs;
                             default:
                                 reader.Skip();
@@ -553,7 +549,7 @@ namespace BG3LocalizationMerger
                 .SelectMany(x => x.Texts)
                 .Where(x => x != null);
 
-        private IEnumerable<Dialog> ParseDialogs(XmlReader reader, IList<string?> speakers)
+        private IEnumerable<Dialog> ParseDialogs(XmlReader reader)
         {
             if (reader.ReadToDescendant("children") && reader.ReadToDescendant("node"))
             {
@@ -569,46 +565,8 @@ namespace BG3LocalizationMerger
                         reader.Skip();
                         continue;
                     }
-                    yield return new Dialog(reader.ReadSubtree(), speakers);
+                    yield return new Dialog(reader.ReadSubtree());
                 } while (reader.NodeType == XmlNodeType.Element || reader.Read());
-            }
-        }
-
-        private static void ParseSpeakers(XmlReader reader, IList<string?> speakers)
-        {
-            if (reader.ReadToDescendant("children") && reader.ReadToDescendant("node"))
-            {
-                do
-                {
-                    if (reader.NodeType != XmlNodeType.Element)
-                        continue;
-                    Debug.Assert(
-                        reader.Name == "node"
-                            && reader.GetAttribute("id") == "speaker"
-                            && !reader.IsEmptyElement
-                    );
-                    var subreader = reader.ReadSubtree();
-                    subreader.Read();
-                    int index = -1;
-                    string? id = null;
-                    while (subreader.Read())
-                    {
-                        if (subreader.NodeType != XmlNodeType.Element)
-                            continue;
-                        switch (reader.GetAttribute("id"))
-                        {
-                            case "index":
-                                index = int.Parse(reader.GetAttribute("value")!);
-                                break;
-                            case "list":
-                                id = reader.GetAttribute("value");
-                                break;
-                        }
-                    }
-                    Debug.Assert(speakers.Count == index);
-                    speakers.Add(id);
-                    Debug.Assert(reader.NodeType == XmlNodeType.EndElement);
-                } while (reader.Read());
             }
         }
 
@@ -686,7 +644,7 @@ namespace BG3LocalizationMerger
                 MainWindow.Log(string.Format(Strings.PackagingMessage));
                 string exportPath = Properties.Settings.Default.ExportPath;
                 Game game = Game.BaldursGate3;
-                var options = new PackageCreationOptions
+                var options = new PackageBuildData
                 {
                     Version = game.PAKVersion(),
                     Compression = CompressionMethod.Zlib

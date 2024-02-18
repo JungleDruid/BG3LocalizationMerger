@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <Reference Include="LSLib">
-      <HintPath>D:\Games\BG3\LSLib\LSLib.dll</HintPath>
+      <HintPath>E:\Games\BG3\LSLib\Tools\LSLib.dll</HintPath>
     </Reference>
   </ItemGroup>
 

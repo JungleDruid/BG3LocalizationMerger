@@ -242,7 +242,7 @@
     <value>正在排序資料...</value>
   </data>
   <data name="TotalStringMessage" xml:space="preserve">
-    <value>所有字串數量：{0}\t對照成功數量：{1}</value>
+    <value>所有字串數量：{0} 對照成功數量：{1}</value>
   </data>
   <data name="MergingMessage" xml:space="preserve">
     <value>正在結合{0}...</value>

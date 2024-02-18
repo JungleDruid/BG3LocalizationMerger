@@ -33,7 +33,7 @@ namespace BG3LocalizationMerger
         public IEnumerable<string> Children { get; }
         public IEnumerable<string> Texts { get; }
 
-        public Dialog(XmlReader reader, IList<string?> speakers)
+        public Dialog(XmlReader reader)
         {
             ArrayPool<string> shared = ArrayPool<string>.Shared;
             string[] children = shared.Rent(128);
@@ -70,14 +70,6 @@ namespace BG3LocalizationMerger
                                 break;
                             case "UUID":
                                 Id = reader.GetAttribute("value")!;
-                                break;
-                            case "speaker":
-                                string speakerValue = reader.GetAttribute("value")!;
-                                int speakerIndex = int.Parse(speakerValue);
-                                if (speakerIndex >= 0)
-                                    Speaker = speakers[speakerIndex];
-                                else
-                                    Speaker = speakerValue;
                                 break;
                         }
                         break;

@@ -490,7 +490,7 @@ namespace BG3LocalizationMerger.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total strings: {0}\tMatched: {1}.
+        ///   Looks up a localized string similar to Total strings: {0} Matched: {1}.
         /// </summary>
         public static string TotalStringMessage {
             get {

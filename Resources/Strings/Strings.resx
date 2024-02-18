@@ -242,7 +242,7 @@ Retry?</value>
     <value>Sorting Data...</value>
   </data>
   <data name="TotalStringMessage" xml:space="preserve">
-    <value>Total strings: {0}\tMatched: {1}</value>
+    <value>Total strings: {0} Matched: {1}</value>
   </data>
   <data name="MergingMessage" xml:space="preserve">
     <value>Merging {0}...</value>
