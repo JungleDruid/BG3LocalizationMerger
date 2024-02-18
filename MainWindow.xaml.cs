@@ -39,6 +39,12 @@ namespace BG3LocalizationMerger
             ExportPathTextBox.Text = props.ExportPath;
 
             InitCulture();
+
+            var version = Assembly.GetEntryAssembly()?.GetName().Version;
+            if (version != null)
+            {
+                Title = $"{Title} v{version}";
+            }
         }
 
         private static void UpgradeSettings()
