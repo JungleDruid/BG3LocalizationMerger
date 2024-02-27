@@ -256,4 +256,7 @@ Retry?</value>
   <data name="TotalElapsedMessage" xml:space="preserve">
     <value>Total elapsed: {0:0.##}s</value>
   </data>
+  <data name="UsingCache" xml:space="preserve">
+    <value>Using cached data from the previous merge. (To discard the cache, please relaunch the program.)</value>
+  </data>
 </root>

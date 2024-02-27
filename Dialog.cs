@@ -113,8 +113,8 @@ namespace BG3LocalizationMerger
                 }
             }
 
-            Children = childrenCount == 0 ? Array.Empty<string>() : children[..childrenCount];
-            Texts = textsCount == 0 ? Array.Empty<string>() : texts[..textsCount];
+            Children = childrenCount == 0 ? [] : children[..childrenCount];
+            Texts = textsCount == 0 ? [] : texts[..textsCount];
             Debug.Assert(!string.IsNullOrWhiteSpace(Id));
             shared.Return(children);
             shared.Return(texts);

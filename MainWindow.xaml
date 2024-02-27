@@ -43,7 +43,7 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBox x:Name="LogTextBox" Grid.Row="6" TextWrapping="Wrap" Text="" Grid.ColumnSpan="3" IsReadOnly="True" VerticalScrollBarVisibility="Visible"/>
+            <RichTextBox x:Name="LogTextBox" Grid.Row="6" Grid.ColumnSpan="3" IsReadOnly="True" VerticalScrollBarVisibility="Visible"/>
             <Label Content="{ns:Loc UnpackedData}" VerticalContentAlignment="Center" Margin="10,10,10,10"/>
             <Label Content="{ns:Loc LanguagePack}" VerticalContentAlignment="Center" Grid.Row="1" Margin="10,10,10,10"/>
             <Label Content="{ns:Loc ReferencePack}" VerticalContentAlignment="Center" Grid.Row="2" Margin="10,10,10,10"/>

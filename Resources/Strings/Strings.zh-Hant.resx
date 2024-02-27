@@ -256,4 +256,7 @@
   <data name="TotalElapsedMessage" xml:space="preserve">
     <value>總共耗時：{0:0.##}秒</value>
   </data>
+  <data name="UsingCache" xml:space="preserve">
+    <value>正在使用上次合併的暫存資料。（若要捨棄暫存資料，請重啟本程式）</value>
+  </data>
 </root>

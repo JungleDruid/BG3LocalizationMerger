@@ -4,6 +4,7 @@ using ModernWpf.Controls.Primitives;
 using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -13,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace BG3LocalizationMerger
@@ -25,6 +27,9 @@ namespace BG3LocalizationMerger
         private static MainWindow? s_instance;
 
         public static MainWindow Instance => s_instance!;
+
+        public static int ErrorCount { get; private set; }
+        public static bool CacheValid { get; private set; }
 
         public MainWindow()
         {
@@ -100,17 +105,33 @@ namespace BG3LocalizationMerger
             LanguageComboBox.SelectedIndex = 0;
         }
 
-        public static void Log(string text)
+        public static void Log(string text, Brush? foreground = null)
         {
             s_instance!.Dispatcher.Invoke(() =>
             {
                 var textbox = s_instance.LogTextBox;
-                text = $"[{DateTime.Now.ToLongTimeString()}] {text}";
-                if (!string.IsNullOrEmpty(textbox.Text))
-                    text = '\n' + text;
-                textbox.Text += text;
+                Paragraph paragraph = new();
+                Run run = new($"[{DateTime.Now.ToLongTimeString()}] {text}");
+                paragraph.Inlines.Add(run);
+                paragraph.Margin = new(0);
+                if (foreground != null)
+                {
+                    paragraph.Foreground = foreground;
+                }
+                textbox.Document.Blocks.Add(paragraph);
                 textbox.ScrollToEnd();
             });
+        }
+
+        public static void LogError(string text)
+        {
+            ErrorCount += 1;
+            Log(text, Brushes.Red);
+        }
+
+        public static void LogFileError(string path, Exception e)
+        {
+            LogError($"ERROR: {e.Message} ({path[Settings.Default.UnpackedDataPath.Length..]})");
         }
 
         private async void Merge_Click(object sender, RoutedEventArgs e)
@@ -119,7 +140,25 @@ namespace BG3LocalizationMerger
                 return;
             SaveSettings();
 
+            ErrorCount = 0;
+            LogTextBox.Document.Blocks.Clear();
+
             await RunMerge(PackageManager.Instance.Merge);
+
+            if (ErrorCount > 0)
+            {
+                CacheValid = false;
+                MessageBox.Show(
+                    $"{ErrorCount} error{(ErrorCount > 1 ? "s" : "")} occurred. Check the logs for details.",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+            }
+            else
+            {
+                CacheValid = true;
+            }
         }
 
         private Task<bool> VerifyTextBoxes(bool showWarning, bool checkUnpackedData = true)

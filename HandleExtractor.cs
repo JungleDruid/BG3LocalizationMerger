@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -48,95 +49,175 @@ namespace BG3LocalizationMerger
         )]
         private static partial Regex TooltipFilter();
 
-        public static IEnumerable<string> ExtractCharacterHandles(string path)
+        public static IEnumerable<string>? ExtractCharacterHandles(string path)
         {
-            var text = ReadText(path);
-            if (!TemplateCharacterFilter().IsMatch(text))
-                return Enumerable.Empty<string>();
-            return ExtractHandles(text, CharacterHandles());
+            try
+            {
+                var text = ReadText(path);
+                if (!TemplateCharacterFilter().IsMatch(text))
+                    return Enumerable.Empty<string>();
+                return ExtractHandles(text, CharacterHandles());
+            }
+            catch (Exception e)
+            {
+                MainWindow.LogFileError(path, e);
+                return null;
+            }
         }
 
-        public static IEnumerable<string> ExtractWaypointHandles(string path)
+        public static IEnumerable<string>? ExtractWaypointHandles(string path)
         {
-            return ExtractGenericHandles(path);
+            try
+            {
+                return ExtractGenericHandles(path);
+            }
+            catch (Exception e)
+            {
+                MainWindow.LogFileError(path, e);
+                return null;
+            }
         }
 
-        public static IEnumerable<string> ExtractQuestMarkerHandles(string path)
+        public static IEnumerable<string>? ExtractQuestMarkerHandles(string path)
         {
-            return ExtractGenericHandles(path);
+            try
+            {
+                return ExtractGenericHandles(path);
+            }
+            catch (Exception e)
+            {
+                MainWindow.LogFileError(path, e);
+                return null;
+            }
         }
 
-        public static IEnumerable<string> ExtractBookHandles(string path)
+        public static IEnumerable<string>? ExtractBookHandles(string path)
         {
-            return ExtractGenericHandles(path);
+            try
+            {
+                return ExtractGenericHandles(path);
+            }
+            catch (Exception e)
+            {
+                MainWindow.LogFileError(path, e);
+                return null;
+            }
         }
 
-        public static (IEnumerable<string>, IEnumerable<string>) ExtractQuestHandles(string path)
+        public static (IEnumerable<string>, IEnumerable<string>)? ExtractQuestHandles(string path)
         {
-            string text = ReadText(path);
-            MatchCollection matches = QuestHandle().Matches(text);
-            var group = matches.GroupBy(x => x.Groups["Type"].Value);
-            return (
-                group
-                    .FirstOrDefault(x => x.Key == "QuestTitle")
-                    ?.SelectMany(x => x.Groups.Values.Skip(1))
-                    .Select(x => x.Value) ?? Enumerable.Empty<string>(),
-                group
-                    .Where(x => x.Key.EndsWith("Description"))
-                    .SelectMany(x => x)
-                    ?.SelectMany(x => x.Groups.Values.Skip(1))
-                    .Select(x => x.Value) ?? Enumerable.Empty<string>()
-            );
+            try
+            {
+                string text = ReadText(path);
+                MatchCollection matches = QuestHandle().Matches(text);
+                var group = matches.GroupBy(x => x.Groups["Type"].Value);
+                return (
+                    group
+                        .FirstOrDefault(x => x.Key == "QuestTitle")
+                        ?.SelectMany(x => x.Groups.Values.Skip(1))
+                        .Select(x => x.Value) ?? Enumerable.Empty<string>(),
+                    group
+                        .Where(x => x.Key.EndsWith("Description"))
+                        .SelectMany(x => x)
+                        ?.SelectMany(x => x.Groups.Values.Skip(1))
+                        .Select(x => x.Value) ?? Enumerable.Empty<string>()
+                );
+            }
+            catch (Exception e)
+            {
+                MainWindow.LogFileError(path, e);
+                return null;
+            }
         }
 
-        public static (IEnumerable<string>, IEnumerable<string>) ExtractStatusHandles(string path)
+        public static (IEnumerable<string>, IEnumerable<string>)? ExtractStatusHandles(string path)
         {
-            string text = ReadText(path);
-            MatchCollection matches = StatusHandle().Matches(text);
-            var group = matches.GroupBy(x => x.Groups["Type"].Value);
-            return (
-                group
-                    .FirstOrDefault(x => x.Key == "DisplayName")
-                    ?.SelectMany(x => x.Groups.Values.Skip(1))
-                    .Select(x => x.Value) ?? Enumerable.Empty<string>(),
-                group
-                    .Where(x => x.Key.EndsWith("Description"))
-                    .SelectMany(x => x)
-                    ?.SelectMany(x => x.Groups.Values.Skip(1))
-                    .Select(x => x.Value) ?? Enumerable.Empty<string>()
-            );
+            try
+            {
+                string text = ReadText(path);
+                MatchCollection matches = StatusHandle().Matches(text);
+                var group = matches.GroupBy(x => x.Groups["Type"].Value);
+                return (
+                    group
+                        .FirstOrDefault(x => x.Key == "DisplayName")
+                        ?.SelectMany(x => x.Groups.Values.Skip(1))
+                        .Select(x => x.Value) ?? Enumerable.Empty<string>(),
+                    group
+                        .Where(x => x.Key.EndsWith("Description"))
+                        .SelectMany(x => x)
+                        ?.SelectMany(x => x.Groups.Values.Skip(1))
+                        .Select(x => x.Value) ?? Enumerable.Empty<string>()
+                );
+            }
+            catch (Exception e)
+            {
+                MainWindow.LogFileError(path, e);
+                return null;
+            }
         }
 
-        public static IEnumerable<Group> ExtractItemGroup(string path)
+        public static IEnumerable<Group>? ExtractItemGroup(string path)
         {
-            string text = ReadText(path);
-            if (!TemplateItemFilter().IsMatch(text))
-                return Enumerable.Empty<Group>();
-            MatchCollection matches = TemplateHandles().Matches(text);
-            return matches
-                .SelectMany(x => x.Groups.Values.Skip(1))
-                .Where(x => !string.IsNullOrEmpty(x.Value));
+            try
+            {
+                string text = ReadText(path);
+                if (!TemplateItemFilter().IsMatch(text))
+                    return Enumerable.Empty<Group>();
+                MatchCollection matches = TemplateHandles().Matches(text);
+                return matches
+                    .SelectMany(x => x.Groups.Values.Skip(1))
+                    .Where(x => !string.IsNullOrEmpty(x.Value));
+            }
+            catch (Exception e)
+            {
+                MainWindow.LogFileError(path, e);
+                return null;
+            }
         }
 
-        public static IEnumerable<string> ExtractTooltipHandles(string path)
+        public static IEnumerable<string>? ExtractTooltipHandles(string path)
         {
-            string text = ReadText(path);
-            MatchCollection matches = GenericHandle().Matches(text);
-            return matches
-                .Where(x => TooltipFilter().IsMatch(x.Groups[0].Value))
-                .SelectMany(x => x.Groups.Values.Skip(1))
-                .Select(x => x.Value)
-                .Where(x => !string.IsNullOrEmpty(x));
+            try
+            {
+                string text = ReadText(path);
+                MatchCollection matches = GenericHandle().Matches(text);
+                return matches
+                    .Where(x => TooltipFilter().IsMatch(x.Groups[0].Value))
+                    .SelectMany(x => x.Groups.Values.Skip(1))
+                    .Select(x => x.Value)
+                    .Where(x => !string.IsNullOrEmpty(x));
+            }
+            catch (Exception e)
+            {
+                MainWindow.LogFileError(path, e);
+                return null;
+            }
         }
 
-        public static IEnumerable<string> ExtractHintHandles(string path)
+        public static IEnumerable<string>? ExtractHintHandles(string path)
         {
-            return ExtractGenericHandles(path);
+            try
+            {
+                return ExtractGenericHandles(path);
+            }
+            catch (Exception e)
+            {
+                MainWindow.LogFileError(path, e);
+                return null;
+            }
         }
 
-        public static IEnumerable<string> ExtractGenericHandles(string path)
+        public static IEnumerable<string>? ExtractGenericHandles(string path)
         {
-            return ExtractHandles(ReadText(path), GenericHandle());
+            try
+            {
+                return ExtractHandles(ReadText(path), GenericHandle());
+            }
+            catch (Exception e)
+            {
+                MainWindow.LogFileError(path, e);
+                return null;
+            }
         }
 
         private static string ReadText(string path)

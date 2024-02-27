@@ -508,6 +508,15 @@ namespace BG3LocalizationMerger.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Using cached data from the previous merge. (To discard the cache, please relaunch the program.).
+        /// </summary>
+        public static string UsingCache {
+            get {
+                return ResourceManager.GetString("UsingCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Waypoints.
         /// </summary>
         public static string Waypoints {

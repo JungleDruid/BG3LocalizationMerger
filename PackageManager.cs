@@ -17,19 +17,19 @@ namespace BG3LocalizationMerger
 {
     internal sealed partial class PackageManager : SingletonBase<PackageManager>
     {
-        internal static readonly ImmutableList<string> s_modNames = new List<string>()
-        {
+        internal static readonly ImmutableList<string> s_modNames =
+        [
             "Shared",
             "SharedDev",
             "Gustav",
             "GustavDev"
-        }.ToImmutableList();
+        ];
 
-        private static readonly string[] s_questPrototypeFiles = new string[]
-        {
+        private static readonly string[] s_questPrototypeFiles =
+        [
             "quest_prototypes.lsx",
             "objective_prototypes.lsx"
-        };
+        ];
 
         public IReadOnlyDictionary<string, Dialog>? Dialogs { get; private set; }
         public ISet<string>? ItemNameHandles { get; private set; }
@@ -51,6 +51,11 @@ namespace BG3LocalizationMerger
 
         public void Load(CancellationToken cancellationToken)
         {
+            if (MainWindow.CacheValid)
+            {
+                MainWindow.Log(Strings.UsingCache);
+            }
+
             LoadItems(cancellationToken);
             LoadCharacters(cancellationToken);
             LoadDialogues(cancellationToken);
@@ -71,15 +76,21 @@ namespace BG3LocalizationMerger
 
         private static void LogLoaded(int amount, string text, TimeSpan elapsed)
         {
-            MainWindow.Log(
-                string.Format(Strings.LoadedMessage, amount, text, elapsed.TotalSeconds)
-            );
+            string message = string.Format(Strings.LoadedMessage, amount, text, elapsed.TotalSeconds);
+            if (amount > 0)
+            {
+                MainWindow.Log(message);
+            }
+            else
+            {
+                MainWindow.LogError(message);
+            }
         }
 
         private void LoadCharacters(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (!props.MergeCharacters || CharacterHandles != null)
+            if (MainWindow.CacheValid && !props.MergeCharacters || CharacterHandles != null)
                 return;
 
             LogLoading(Strings.Characters);
@@ -130,7 +141,9 @@ namespace BG3LocalizationMerger
                 .Concat(levelMergedFiles)
                 .AsParallel()
                 .WithCancellation(cancellationToken)
-                .SelectMany(HandleExtractor.ExtractCharacterHandles)
+                .Select(HandleExtractor.ExtractCharacterHandles)
+                .Where(x => x != null)
+                .SelectMany(x => x!)
                 .ToHashSet();
 
             sw.Stop();
@@ -140,7 +153,7 @@ namespace BG3LocalizationMerger
         private void LoadMiscs(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (!props.MergeMiscs || MiscHandles != null)
+            if (MainWindow.CacheValid && !props.MergeMiscs || MiscHandles != null)
                 return;
 
             LogLoading(Strings.Miscs);
@@ -161,7 +174,9 @@ namespace BG3LocalizationMerger
             MiscHandles = files
                 .AsParallel()
                 .WithCancellation(cancellationToken)
-                .SelectMany(HandleExtractor.ExtractGenericHandles)
+                .Select(HandleExtractor.ExtractGenericHandles)
+                .Where(x => x != null)
+                .SelectMany(x => x!)
                 .ToHashSet();
 
             sw.Stop();
@@ -171,7 +186,7 @@ namespace BG3LocalizationMerger
         private void LoadWaypoints(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (!props.MergeWaypoints || WaypointHandles != null)
+            if (MainWindow.CacheValid && !props.MergeWaypoints || WaypointHandles != null)
                 return;
 
             LogLoading(Strings.Waypoints);
@@ -195,7 +210,9 @@ namespace BG3LocalizationMerger
             WaypointHandles = files
                 .AsParallel()
                 .WithCancellation(cancellationToken)
-                .SelectMany(HandleExtractor.ExtractWaypointHandles)
+                .Select(HandleExtractor.ExtractWaypointHandles)
+                .Where(x => x != null)
+                .SelectMany(x => x!)
                 .ToHashSet();
 
             sw.Stop();
@@ -205,7 +222,7 @@ namespace BG3LocalizationMerger
         private void LoadQuestMarkers(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (!props.MergeQuestMarkers || QuestMarkerHandles != null)
+            if (MainWindow.CacheValid && !props.MergeQuestMarkers || QuestMarkerHandles != null)
                 return;
 
             LogLoading(Strings.QuestMarkers);
@@ -227,7 +244,9 @@ namespace BG3LocalizationMerger
             QuestMarkerHandles = files
                 .AsParallel()
                 .WithCancellation(cancellationToken)
-                .SelectMany(HandleExtractor.ExtractQuestMarkerHandles)
+                .Select(HandleExtractor.ExtractQuestMarkerHandles)
+                .Where(x => x != null)
+                .SelectMany(x => x!)
                 .ToHashSet();
 
             sw.Stop();
@@ -237,8 +256,8 @@ namespace BG3LocalizationMerger
         private void LoadQuests(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (
-                (!props.MergeQuestNames || QuestNameHandles != null)
+            if (MainWindow.CacheValid
+                && (!props.MergeQuestNames || QuestNameHandles != null)
                 && (!props.MergeQuestDescriptions || QuestDescriptionHandles != null)
             )
                 return;
@@ -264,7 +283,9 @@ namespace BG3LocalizationMerger
             var handles = files
                 .AsParallel()
                 .WithCancellation(cancellationToken)
-                .Select(HandleExtractor.ExtractQuestHandles);
+                .Select(HandleExtractor.ExtractQuestHandles)
+                .Where(x => x != null)
+                .Select(x => ((IEnumerable<string>, IEnumerable<string>))x!);
 
             QuestNameHandles = handles.SelectMany(x => x.Item1).ToHashSet();
             QuestDescriptionHandles = handles.SelectMany(x => x.Item2).ToHashSet();
@@ -280,8 +301,8 @@ namespace BG3LocalizationMerger
         private void LoadStatus(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (
-                (!props.MergeStatusNames || StatusNameHandles != null)
+            if (MainWindow.CacheValid
+                && (!props.MergeStatusNames || StatusNameHandles != null)
                 && (!props.MergeStatusDescriptions || StatusDescriptionHandles != null)
             )
                 return;
@@ -305,7 +326,9 @@ namespace BG3LocalizationMerger
             var handles = files
                 .AsParallel()
                 .WithCancellation(cancellationToken)
-                .Select(HandleExtractor.ExtractStatusHandles);
+                .Select(HandleExtractor.ExtractStatusHandles)
+                .Where(x => x != null)
+                .Select(x => ((IEnumerable<string>, IEnumerable<string>))x!);
 
             StatusNameHandles = handles.SelectMany(x => x.Item1).ToHashSet();
             StatusDescriptionHandles = handles.SelectMany(x => x.Item2).ToHashSet();
@@ -321,7 +344,7 @@ namespace BG3LocalizationMerger
         private void LoadHints(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (!props.MergeHints || HintsHandles != null)
+            if (MainWindow.CacheValid && !props.MergeHints || HintsHandles != null)
                 return;
 
             LogLoading(Strings.Hints);
@@ -336,7 +359,9 @@ namespace BG3LocalizationMerger
             HintsHandles = files
                 .AsParallel()
                 .WithCancellation(cancellationToken)
-                .SelectMany(HandleExtractor.ExtractHintHandles)
+                .Select(HandleExtractor.ExtractHintHandles)
+                .Where(x => x != null)
+                .SelectMany(x => x!)
                 .ToHashSet();
 
             sw.Stop();
@@ -346,7 +371,7 @@ namespace BG3LocalizationMerger
         private void LoadTooltips(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (!props.MergeTooltips || TooltipHandles != null)
+            if (MainWindow.CacheValid && !props.MergeTooltips || TooltipHandles != null)
                 return;
 
             LogLoading(Strings.Tooltips);
@@ -361,7 +386,9 @@ namespace BG3LocalizationMerger
             TooltipHandles = files
                 .AsParallel()
                 .WithCancellation(cancellationToken)
-                .SelectMany(HandleExtractor.ExtractTooltipHandles)
+                .Select(HandleExtractor.ExtractTooltipHandles)
+                .Where(x => x != null)
+                .SelectMany(x => x!)
                 .ToHashSet();
 
             sw.Stop();
@@ -371,7 +398,7 @@ namespace BG3LocalizationMerger
         private void LoadBooks(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (!props.MergeBooks || BookHandles != null)
+            if (MainWindow.CacheValid && !props.MergeBooks || BookHandles != null)
                 return;
 
             LogLoading(Strings.Books);
@@ -392,7 +419,9 @@ namespace BG3LocalizationMerger
             BookHandles = files
                 .AsParallel()
                 .WithCancellation(cancellationToken)
-                .SelectMany(HandleExtractor.ExtractBookHandles)
+                .Select(HandleExtractor.ExtractBookHandles)
+                .Where(x => x != null)
+                .SelectMany(x => x!)
                 .ToHashSet();
 
             sw.Stop();
@@ -402,8 +431,8 @@ namespace BG3LocalizationMerger
         private void LoadItems(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (
-                (!props.MergeItemNames || ItemNameHandles != null)
+            if (MainWindow.CacheValid
+                && (!props.MergeItemNames || ItemNameHandles != null)
                 && (!props.MergeItemDescriptions || ItemDescriptionHandles != null)
             )
                 return;
@@ -456,7 +485,9 @@ namespace BG3LocalizationMerger
                 .Concat(levelMergedFiles)
                 .AsParallel()
                 .WithCancellation(cancellationToken)
-                .Select(HandleExtractor.ExtractItemGroup);
+                .Select(HandleExtractor.ExtractItemGroup)
+                .Where(x => x != null)
+                .Select(x => x!);
 
             ItemNameHandles = groups
                 .SelectMany(x => x.Where(x => x.Name == "Name").Select(x => x.Value))
@@ -466,6 +497,7 @@ namespace BG3LocalizationMerger
                 .ToHashSet();
 
             sw.Stop();
+
             LogLoaded(
                 ItemNameHandles?.Count ?? ItemDescriptionHandles!.Count,
                 Strings.Items,
@@ -476,7 +508,7 @@ namespace BG3LocalizationMerger
         private void LoadDialogues(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (!props.MergeDialogues || Dialogs != null)
+            if (MainWindow.CacheValid && !props.MergeDialogues || Dialogs != null)
                 return;
 
             LogLoading(Strings.Dialogues);
@@ -500,41 +532,55 @@ namespace BG3LocalizationMerger
                 .WithCancellation(cancellationToken)
                 .Select(lsx =>
                 {
-                    XmlReader reader = XmlReader.Create(
-                        lsx,
-                        new XmlReaderSettings { IgnoreWhitespace = true }
-                    );
-                    if (!reader.ReadToFollowing("save") || !reader.ReadToDescendant("region"))
-                        throw new InvalidOperationException();
-                    while (reader.GetAttribute("id") != "dialog")
-                        reader.Skip();
-                    if (!reader.ReadToDescendant("children"))
-                        throw new InvalidOperationException();
-                    reader = reader.ReadSubtree();
-                    if (!reader.ReadToDescendant("node"))
-                        throw new InvalidOperationException();
-                    do
+                    XmlReader? reader = null;
+                    try
                     {
-                        if (reader.NodeType != XmlNodeType.Element || reader.IsEmptyElement)
+                        reader = XmlReader.Create(
+                            lsx,
+                            new XmlReaderSettings { IgnoreWhitespace = true }
+                        );
+                        if (!reader.ReadToFollowing("save") || !reader.ReadToDescendant("region"))
+                            throw new InvalidOperationException();
+                        while (reader.GetAttribute("id") != "dialog")
+                            reader.Skip();
+                        if (!reader.ReadToDescendant("children"))
+                            throw new InvalidOperationException();
+                        reader = reader.ReadSubtree();
+                        if (!reader.ReadToDescendant("node"))
+                            throw new InvalidOperationException();
+                        do
                         {
-                            reader.Read();
-                            continue;
-                        }
-                        Debug.Assert(reader.Name == "node");
-                        string? id = reader.GetAttribute("id");
-                        switch (id)
-                        {
-                            case "nodes":
-                                var dialogs = ParseDialogs(reader.ReadSubtree());
-                                return dialogs;
-                            default:
-                                reader.Skip();
-                                break;
-                        }
-                    } while (reader.NodeType == XmlNodeType.Element || reader.Read());
-                    throw new InvalidOperationException();
+                            if (reader.NodeType != XmlNodeType.Element || reader.IsEmptyElement)
+                            {
+                                reader.Read();
+                                continue;
+                            }
+                            Debug.Assert(reader.Name == "node");
+                            string? id = reader.GetAttribute("id");
+                            switch (id)
+                            {
+                                case "nodes":
+                                    var dialogs = ParseDialogs(reader.ReadSubtree()).ToArray();
+                                    return dialogs;
+                                default:
+                                    reader.Skip();
+                                    break;
+                            }
+                        } while (reader.NodeType == XmlNodeType.Element || reader.Read());
+                        throw new InvalidOperationException();
+                    }
+                    catch (Exception e)
+                    {
+                        MainWindow.LogFileError(lsx, e);
+                        return null;
+                    }
+                    finally
+                    {
+                        reader?.Close();
+                    }
                 })
-                .SelectMany(x => x)
+                .Where(x => x != null)
+                .SelectMany(x => x!)
                 .GroupBy(x => x.Id)
                 .Select(x => x.Last())
                 .ToDictionary(x => x.Id);
@@ -656,7 +702,7 @@ namespace BG3LocalizationMerger
                     try
                     {
                         cancellationToken.ThrowIfCancellationRequested();
-                        packager.CreatePackage(exportPath, _dir, options);
+                        await packager.CreatePackage(exportPath, _dir, options);
                         break;
                     }
                     catch (IOException)
