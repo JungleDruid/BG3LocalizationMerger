@@ -90,7 +90,7 @@ namespace BG3LocalizationMerger
         private void LoadCharacters(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (MainWindow.CacheValid && !props.MergeCharacters || CharacterHandles != null)
+            if (MainWindow.CacheValid && (!props.MergeCharacters || CharacterHandles != null))
                 return;
 
             LogLoading(Strings.Characters);
@@ -153,7 +153,7 @@ namespace BG3LocalizationMerger
         private void LoadMiscs(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (MainWindow.CacheValid && !props.MergeMiscs || MiscHandles != null)
+            if (MainWindow.CacheValid && (!props.MergeMiscs || MiscHandles != null))
                 return;
 
             LogLoading(Strings.Miscs);
@@ -186,7 +186,7 @@ namespace BG3LocalizationMerger
         private void LoadWaypoints(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (MainWindow.CacheValid && !props.MergeWaypoints || WaypointHandles != null)
+            if (MainWindow.CacheValid && (!props.MergeWaypoints || WaypointHandles != null))
                 return;
 
             LogLoading(Strings.Waypoints);
@@ -222,7 +222,7 @@ namespace BG3LocalizationMerger
         private void LoadQuestMarkers(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (MainWindow.CacheValid && !props.MergeQuestMarkers || QuestMarkerHandles != null)
+            if (MainWindow.CacheValid && (!props.MergeQuestMarkers || QuestMarkerHandles != null))
                 return;
 
             LogLoading(Strings.QuestMarkers);
@@ -344,7 +344,7 @@ namespace BG3LocalizationMerger
         private void LoadHints(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (MainWindow.CacheValid && !props.MergeHints || HintsHandles != null)
+            if (MainWindow.CacheValid && (!props.MergeHints || HintsHandles != null))
                 return;
 
             LogLoading(Strings.Hints);
@@ -371,7 +371,7 @@ namespace BG3LocalizationMerger
         private void LoadTooltips(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (MainWindow.CacheValid && !props.MergeTooltips || TooltipHandles != null)
+            if (MainWindow.CacheValid && (!props.MergeTooltips || TooltipHandles != null))
                 return;
 
             LogLoading(Strings.Tooltips);
@@ -398,7 +398,7 @@ namespace BG3LocalizationMerger
         private void LoadBooks(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (MainWindow.CacheValid && !props.MergeBooks || BookHandles != null)
+            if (MainWindow.CacheValid && (!props.MergeBooks || BookHandles != null))
                 return;
 
             LogLoading(Strings.Books);
@@ -508,7 +508,7 @@ namespace BG3LocalizationMerger
         private void LoadDialogues(CancellationToken cancellationToken)
         {
             var props = Properties.Settings.Default;
-            if (MainWindow.CacheValid && !props.MergeDialogues || Dialogs != null)
+            if (MainWindow.CacheValid && (!props.MergeDialogues || Dialogs != null))
                 return;
 
             LogLoading(Strings.Dialogues);
