@@ -773,18 +773,63 @@ namespace BG3LocalizationMerger
                 .Concat(lineSet)
                 .ToHashSet();
 
-            var refDict = locas.RefDoc
-                .Element("contentList")!
-                .Elements("content")
-                .Select(x => (x.Attribute("contentuid")!.Value, x.Value))
-                .Where(x => combined.Contains(x.Item1))
-                .ToDictionary(x => x.Item1, x => x.Item2);
-            var dict = locas.Doc
-                .Element("contentList")!
-                .Elements("content")
-                .Select(x => (x, x.Attribute("contentuid")!.Value))
-                .Where(x => refDict.ContainsKey(x.Value))
-                .ToDictionary(x => x.Value, x => x.x);
+            Dictionary<string, string> refDict;
+            try
+            {
+                refDict = locas.RefDoc
+                    .Element("contentList")!
+                    .Elements("content")
+                    .Select(x => (x.Attribute("contentuid")!.Value, x.Value))
+                    .Where(x => combined.Contains(x.Item1))
+                    .ToDictionary(x => x.Item1, x => x.Item2);
+            }
+            catch (ArgumentException)
+            {
+                var array = locas.RefDoc
+                    .Element("contentList")!
+                    .Elements("content")
+                    .Select(x => (x.Attribute("contentuid")!.Value, x.Value))
+                    .Where(x => combined.Contains(x.Item1))
+                    .ToArray();
+                refDict = [];
+                foreach (var item in array)
+                {
+                    if (!refDict.TryAdd(item.Item1, item.Item2))
+                    {
+                        refDict[item.Item1] = item.Item2;
+                        MainWindow.LogError($"Duplicated Reference Language Pack Key found: {item.Item1}.");
+                    }
+                }
+            }
+
+            Dictionary<string, XElement> dict;
+            try
+            {
+                dict = locas.Doc
+                    .Element("contentList")!
+                    .Elements("content")
+                    .Select(x => (x, x.Attribute("contentuid")!.Value))
+                    .Where(x => refDict.ContainsKey(x.Value))
+                    .ToDictionary(x => x.Value, x => x.x);
+            }
+            catch (ArgumentException)
+            {
+                var array = locas.Doc
+                    .Element("contentList")!
+                    .Elements("content")
+                    .Select(x => (x, x.Attribute("contentuid")!.Value))
+                    .Where(x => refDict.ContainsKey(x.Value))
+                    .ToArray();
+                dict = [];
+                foreach (var item in array)
+                {
+                    if (!dict.TryAdd(item.Value, item.x))
+                    {
+                        dict[item.Value] = item.x;
+                        MainWindow.LogError($"Duplicated Language Pack Key found: {item.Value}.");
+                    }
+                }
+            }
 
             MainWindow.Log(string.Format(Strings.TotalStringMessage, combined.Count, dict.Count));
 
@@ -853,19 +898,61 @@ namespace BG3LocalizationMerger
             Locas locas = new(cancellationToken);
             cancellationToken.ThrowIfCancellationRequested();
             MainWindow.Log(Strings.MergingUnconditionallyMessage);
-            var refDict = locas.RefDoc
-                .Element("contentList")!
-                .Elements("content")
-                .Select(x => (x.Attribute("contentuid")!.Value, x.Value))
-                .ToDictionary(x => x.Item1, x => x.Item2);
-            cancellationToken.ThrowIfCancellationRequested();
-            var dict = locas.Doc
-                .Element("contentList")!
-                .Elements("content")
-                .Select(x => (x, x.Attribute("contentuid")!.Value))
-                .Where(x => refDict.ContainsKey(x.Value))
-                .ToDictionary(x => x.Value, x => x.x);
-            cancellationToken.ThrowIfCancellationRequested();
+            Dictionary<string, string> refDict;
+            try
+            {
+                refDict = locas.RefDoc
+                    .Element("contentList")!
+                    .Elements("content")
+                    .Select(x => (x.Attribute("contentuid")!.Value, x.Value))
+                    .ToDictionary(x => x.Item1, x => x.Item2);
+            }
+            catch (ArgumentException)
+            {
+                var array = locas.RefDoc
+                    .Element("contentList")!
+                    .Elements("content")
+                    .Select(x => (x.Attribute("contentuid")!.Value, x.Value))
+                    .ToArray();
+                refDict = [];
+                foreach (var item in array)
+                {
+                    if (!refDict.TryAdd(item.Item1, item.Item2))
+                    {
+                        refDict[item.Item1] = item.Item2;
+                        MainWindow.LogError($"Duplicated Reference Language Pack Key found: {item.Item1}.");
+                    }
+                }
+            }
+
+            Dictionary<string, XElement> dict;
+            try
+            {
+                dict = locas.Doc
+                    .Element("contentList")!
+                    .Elements("content")
+                    .Select(x => (x, x.Attribute("contentuid")!.Value))
+                    .Where(x => refDict.ContainsKey(x.Value))
+                    .ToDictionary(x => x.Value, x => x.x);
+            }
+            catch (ArgumentException)
+            {
+                var array = locas.Doc
+                    .Element("contentList")!
+                    .Elements("content")
+                    .Select(x => (x, x.Attribute("contentuid")!.Value))
+                    .Where(x => refDict.ContainsKey(x.Value))
+                    .ToArray();
+                dict = [];
+                foreach (var item in array)
+                {
+                    if (!dict.TryAdd(item.Value, item.x))
+                    {
+                        dict[item.Value] = item.x;
+                        MainWindow.LogError($"Duplicated Language Pack Key found: {item.Value}.");
+                    }
+                }
+            }
 
             Parallel.ForEach(
                 dict,
